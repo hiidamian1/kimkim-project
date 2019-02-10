@@ -34,8 +34,7 @@ import Header from './components/Header';
   .root {
     background-image: url('./assets/sarawak.jpg');
     background-size: cover;
-    background-position: center;
-    height: 100%;
+    height: 1000px;
   }
 
   .pages {

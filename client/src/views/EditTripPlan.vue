@@ -44,6 +44,7 @@ export default {
         e.preventDefault();
 
         await tripPlanService.editTripPlan(this.id, this.title, this.summary, this.days);
+        alert("Edits saved");
       } catch(err) {
         this.error = err.message;
       }

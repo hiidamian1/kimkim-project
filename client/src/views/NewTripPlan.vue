@@ -26,7 +26,8 @@ export default {
         e.preventDefault();
 
         await tripPlanService.addTripPlan(this.title, this.summary);
-        console.log('added');
+        alert('added');
+        
         this.title = '';
         this.summary = '';
       } catch(err) {

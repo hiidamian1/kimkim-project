@@ -1,5 +1,5 @@
 <template>  
-  <div v-if='days.length'>
+  <div class='days-list' v-if='days.length'>
     <div v-bind:key='day.id' v-for='day in days'>
 			<Day v-bind:day='day' v-on:delete-day='deleteDay'/>
 		</div>
@@ -26,5 +26,9 @@ export default {
 </script>
 
 <style scoped>
-
+  .days-list {
+    overflow-y: scroll;
+    height: 48vh;
+    border: 1px solid white;
+  }
 </style>

@@ -26,7 +26,8 @@ export default {
         e.preventDefault();
 
         await dayService.addDay(this.$route.params.tripId, this.title, this.description);
-        console.log('added');
+        alert('added');
+        
         this.title = '';
         this.description = '';
       } catch(err) {
