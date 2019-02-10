@@ -1,13 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/database');
+const db = require('../../config/database');
 
 //model
-const TripPlan = require('../models/TripPlan');
-const Day = require('../models/Day');
+const TripPlan = require('../../models/TripPlan');
+const Day = require('../../models/Day');
+
+//retrieve trip plan
+router.get('/viewOne/:id', async (req, res) => {
+    const result = await TripPlan.find({
+            where: {
+                id: req.params.id
+            }
+        }
+    );
+    res.send(result);
+});
 
 //retrieve trip plans
-router.get('/', async (req, res) => {
+router.get('/viewAll', async (req, res) => {
     const results = await TripPlan.findAll();
     res.send(results);
 });

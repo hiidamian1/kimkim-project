@@ -9,10 +9,11 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //database config
-const db = require('./config/database');
+//const db = require('./config/database');
 
 //api
-app.use('/trip-plans', require('./api/tripPlans'));
+app.use('/api/tripPlans', require('./routes/api/tripPlans'));
+app.use('/api/days', require('./routes/api/days'));
 
 //handle production
 if (process.env.NODE_ENV == 'production') {
