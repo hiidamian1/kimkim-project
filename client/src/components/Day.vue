@@ -5,7 +5,7 @@
       {{day.description}}
     </div>
     <div class='links'>
-      <router-link v-bind:to="{name: 'editDay', params: {id: day.id}}">Edit</router-link>|
+      <router-link v-bind:to="{name: 'editDay', params: {id: day.tripId, dayId: day.id}}">Edit</router-link>|
       <a href v-on:click='deleteDay'>Delete</a>
     </div>
   </div>
@@ -31,10 +31,10 @@ export default {
 <style scoped>
   .day {
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid white;
     padding: 5px 15px;
     font-weight: normal;
-    background-color: rgba(20%, 20%, 20%, .5);
+    background-color: none;
     color: white;
     text-align: center;
   }

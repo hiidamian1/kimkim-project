@@ -7,7 +7,7 @@ class dayService {
 	static getDay(id) {
 		return new Promise(async (resolve, reject) =>{
 			try {
-				const res = await axios.get(`${url}/viewOne/${id}`);
+				const res = await axios.get(`${url}/${id}/viewOne`);
 				const data = res.data;
 				resolve(data);
 			} catch(err) {
@@ -17,10 +17,10 @@ class dayService {
 	}
 
 	// Get days
-	static getDays() {
+	static getDays(tripId) {
 		return new Promise(async (resolve, reject) =>{
 			try {
-				const res = await axios.get(`${url}/viewAll`);
+				const res = await axios.get(`${url}/${tripId}/viewAll`);
 				const data = res.data;
 				resolve(data);
 			} catch(err) {
@@ -30,8 +30,9 @@ class dayService {
 	}
 	
 	// Create day
-	static addDay(title, description) {
+	static addDay(tripId, title, description) {
 		return axios.post(`${url}/new`, {
+			tripId,
 			title,
 			description
 		});

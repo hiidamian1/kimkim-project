@@ -26,7 +26,7 @@ export default {
     async deleteTripPlan(id) {
       try {
         await tripPlanService.deleteTripPlan(id);
-        this.tripPlans = tripPlanService.getTripPlans();
+        this.tripPlans = await tripPlanService.getTripPlans();
       } catch(err) {
         this.error = err.message;
       }

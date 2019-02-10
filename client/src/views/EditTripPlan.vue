@@ -2,15 +2,18 @@
   <div>
     <form @submit='editTripPlan'>
       <label for='title'>Title</label>
-      <input v-model='title' id='title' class='top' type='text' placeholder='Title' required>
+      <input v-model='title' id='title' type='text' placeholder='Title' required>
       
       <label for='summary'>Summary</label>
       <input v-model='summary' id='summary' type='text' placeholder='Summary' required>
+
+      <label>Days</label>
+      <Days v-bind:days='days' v-on:delete-day='deleteDay'/>
       
-      <Days v-bind:days='days'/>
-      
+      <router-link v-bind:to="{name: 'newDay', params: {tripId: this.id}}" tag='button'>Add New Day</router-link>
+
       <div class='center'>
-        <input type='submit' value='Save Edits'>
+        <input class='action' type='submit' value='Save Edits'>
       </div>
     </form>
     <router-link to='/' tag='button'>View Trip Plans</router-link>
@@ -19,7 +22,8 @@
 
 <script>
 import tripPlanService from '../tripPlanService.js';
-//import dayService from '../dayService.js';
+import dayService from '../dayService.js';
+import Days from '../components/Days';
 
 export default {
   name: 'EditTripPlan',
@@ -43,6 +47,14 @@ export default {
       } catch(err) {
         this.error = err.message;
       }
+    },
+    async deleteDay(dayId) {
+      try{
+        await dayService.deleteDay(dayId);
+        this.days = await dayService.getDays(this.id);
+      } catch(err) {
+        this.error = err.message;
+      }
     }
   },
   async created() {
@@ -52,7 +64,7 @@ export default {
     this.title = tripPlan.title;
     this.summary = tripPlan.summary;
 
-    console.log(tripPlan);
+    this.days = await dayService.getDays(this.id);
   }
 }
 </script>
@@ -72,13 +84,15 @@ export default {
     width: 100%;
     padding: 10px;
     display: inline-block;
+    margin-bottom: 20px;
+
   }
 
   .top {
     margin-bottom: 20px;
   }
 
-  input[type=submit] {
+  .action {
     color: white;
     border: 1px solid white;
     background: none;
@@ -88,7 +102,7 @@ export default {
     cursor: pointer;
   }
 
-  input[type=submit]:hover {
+  .action:hover {
     background: rgba(255, 255, 255, .5);
 
   }

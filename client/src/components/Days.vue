@@ -1,13 +1,13 @@
-<template>
+<template>  
   <div v-if='days.length'>
-		<div v-bind:key='day.id' v-for='day in days'>
+    <div v-bind:key='day.id' v-for='day in days'>
 			<Day v-bind:day='day' v-on:delete-day='deleteDay'/>
 		</div>
 	</div>
 </template>
 
 <script>
-import Day from './Day.vue';
+import Day from './Day';
 
 export default {
   name: 'Days',

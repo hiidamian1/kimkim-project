@@ -1,5 +1,5 @@
 <template>
-  <router-link to='trip-plans/new' tag='button'>
+  <router-link v-bind:to="{name: 'new'}" tag='button'>
       Add Trip Plan
   </router-link> 
 </template>
@@ -19,7 +19,7 @@ export default {
     font-size:36px;
     background-color: rgba(20%, 20%, 20%, .5);
     color: white;
-    border: 1px solid black;
+    border: 1px solid white;
     margin-bottom: 50px;
     cursor: pointer;
   }

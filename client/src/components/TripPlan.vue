@@ -31,7 +31,7 @@ export default {
 <style scoped>
   .tripPlan {
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid white;
     padding: 5px 15px;
     font-weight: normal;
     background-color: rgba(20%, 20%, 20%, .5);

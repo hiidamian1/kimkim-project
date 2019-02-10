@@ -6,7 +6,7 @@ const db = require('../../config/database');
 const Day = require('../../models/Day');
 
 //retrieve day
-router.get('/viewOne/:id', async (req, res) => {
+router.get('/:id/viewOne/', async (req, res) => {
   const result = await Day.findOne({
     where: {
       id: req.params.id
@@ -16,8 +16,12 @@ router.get('/viewOne/:id', async (req, res) => {
 });
 
 //retrieve days
-router.get('/viewAll', async (req, res) => {
-  const results = await Day.findAll();
+router.get('/:tripId/viewAll', async (req, res) => {
+  const results = await Day.findAll({
+    where: {
+      tripId: req.params.tripId
+    }
+  });
   res.send(results);
 });
 
@@ -33,7 +37,6 @@ router.post('/new', async (req, res) => {
     });
 
     res.sendStatus(200);
-    //res.redirect('/');
   } catch(err) {
     console.log(err);
   }

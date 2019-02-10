@@ -11,7 +11,7 @@
         <input type='submit' value='Save Edits'>
       </div>
     </form>
-    <router-link v-bind:to="{name: 'edit', params: {id: tripPlan.id}}" tag='button'>View Trip Plan</router-link>
+    <router-link v-bind:to="{name: 'edit', params: {id: this.id}}" tag='button'>View Trip Plan</router-link>
   </div>
 </template>
 
@@ -23,6 +23,7 @@ export default {
   data() {
     return {
       id: -1,
+      dayId: -1,
       title: '',
       description: '',
     }
@@ -32,15 +33,19 @@ export default {
       try {
         e.preventDefault();
 
-        await dayService.editDay(this.id, this.title, this.description);
+        await dayService.editDay(this.dayId, this.title, this.description);
       } catch(err) {
         this.error = err.message;
       }
     }
   },
   async created() {
+    console.log("edit day");
+    this.dayId = this.$route.params.dayId;
     this.id = this.$route.params.id;
-    const day = await dayService.getDay(this.id);
+    console.log(`tripId: ${this.dayId}`);
+    console.log(`id: ${this.id}`)
+    const day = await dayService.getDay(this.dayId);
 
     this.title = day.title;
     this.description = day.description;
