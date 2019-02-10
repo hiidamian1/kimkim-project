@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
-module.exports = new Sequelize('kimkim-project', 'postgres', 'Cymadeagle1!', {
+// change db name, username, and password as appropriate here
+module.exports = new Sequelize('your-db', 'your-username', 'your-password', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
